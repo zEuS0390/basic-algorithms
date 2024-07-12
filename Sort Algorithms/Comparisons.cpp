@@ -129,7 +129,9 @@ int main(int argc, char* argv[]) {
 	t2 = chrono::high_resolution_clock::now();
 
 	ms_double = t2 - t1;
-	cout << "'" << n << "' Random Numbers Generation Elapsed Time (s): " << ms_double.count() << "\n" << endl;
+	cout << "'" << n << "' Random Numbers Generation Elapsed Time: " << ms_double.count() << "\n" << endl;
+
+	cout << "Sorting Algorithm\t\tElapsed Time" << endl;
 
 	vector<int> numbers1(random_numbers.begin(), random_numbers.end());
 	vector<int> numbers2(random_numbers.begin(), random_numbers.end());
@@ -141,8 +143,9 @@ int main(int argc, char* argv[]) {
 	bubbleSort(numbers1);
 	t2 = chrono::high_resolution_clock::now();
 
+
 	ms_double = t2 - t1;
-	cout << "Bubble Sort Elapsed Time (s):\t\t" << ms_double.count() << endl;
+	cout << "Bubble Sort\t\t\t" << ms_double.count() << endl;
 
 	// Selection Sort Algorithm
 	t1 = chrono::high_resolution_clock::now();
@@ -150,7 +153,7 @@ int main(int argc, char* argv[]) {
 	t2 = chrono::high_resolution_clock::now();
 
 	ms_double = t2 - t1;
-	cout << "Selection Sort Elapsed Time (s):\t" << ms_double.count() << endl;
+	cout << "Selection Sort\t\t\t" << ms_double.count() << endl;
 
 	// Insertion Sort Algorithm
 	t1 = chrono::high_resolution_clock::now();
@@ -158,7 +161,7 @@ int main(int argc, char* argv[]) {
 	t2 = chrono::high_resolution_clock::now();
 
 	ms_double = t2 - t1;
-	cout << "Insertion Sort Elapsed Time (s):\t" << ms_double.count() << endl;
+	cout << "Insertion Sort\t\t\t" << ms_double.count() << endl;
 
 	// Merge Sort Algorithm
 	t1 = chrono::high_resolution_clock::now();
@@ -166,7 +169,7 @@ int main(int argc, char* argv[]) {
 	t2 = chrono::high_resolution_clock::now();
 
 	ms_double = t2 - t1;
-	cout << "Merge Sort Elapsed Time (s):\t\t" << ms_double.count() << endl;
+	cout << "Merge Sort\t\t\t" << ms_double.count() << endl;
 
 	cout << endl;
 	return 0;
