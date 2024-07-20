@@ -21,6 +21,49 @@ void print(vector<int>& nums, string end = "\n") {
 	cout << "]" << end;
 }
 
+// Function to maintain heap property (max heap)
+// Time Complexity: O(log N)
+void heapify(vector<int>& nums, int heap_size, int index) {
+    int largest = index;
+    int left = 2 * index + 1;
+    int right = 2 * index + 2; // Corrected index for right child
+
+    // Compare left child with largest
+    if (left < heap_size && nums[left] > nums[largest])
+        largest = left;
+
+    // Compare right child with largest
+    if (right < heap_size && nums[right] > nums[largest])
+        largest = right;
+
+    // If largest is not the root
+    if (largest != index) {
+        swap(nums[index], nums[largest]);
+        // Recursively heapify the affected sub-tree
+        heapify(nums, heap_size, largest);
+    }
+}
+
+// Function to perform Heap Sort
+// Time Complexity: O(N log N)
+// Space Complexity: O(1) (in-place)
+void heapSort(vector<int>& nums) {
+    int length = nums.size();
+
+    // Build Max Heap
+    // Start from the last non-leaf node and heapify each node upwards
+    for (int i = (length - 1) / 2; i >= 0; --i)
+        heapify(nums, length, i);
+
+    // Extract elements one by one from the heap
+    for (int i = length - 1; i > 0; --i) {
+        // Move current root to end
+        swap(nums[0], nums[i]);
+        // Call max heapify on the reduced heap
+        heapify(nums, i, 0);
+    }
+}
+
 vector<int> merge(vector<int> left, vector<int> right) {
 
 	vector<int> result;
@@ -137,12 +180,12 @@ int main(int argc, char* argv[]) {
 	vector<int> numbers2(random_numbers.begin(), random_numbers.end());
 	vector<int> numbers3(random_numbers.begin(), random_numbers.end());
 	vector<int> numbers4(random_numbers.begin(), random_numbers.end());
+	vector<int> numbers5(random_numbers.begin(), random_numbers.end());
 
 	// Bubble Sort Algorithm
 	t1 = chrono::high_resolution_clock::now();
 	bubbleSort(numbers1);
 	t2 = chrono::high_resolution_clock::now();
-
 
 	ms_double = t2 - t1;
 	cout << "Bubble Sort\t\t\t" << ms_double.count() << endl;
@@ -170,6 +213,14 @@ int main(int argc, char* argv[]) {
 
 	ms_double = t2 - t1;
 	cout << "Merge Sort\t\t\t" << ms_double.count() << endl;
+
+	// Heap Sort Algorithm
+	t1 = chrono::high_resolution_clock::now();
+	heapSort(numbers4);
+	t2 = chrono::high_resolution_clock::now();
+
+	ms_double = t2 - t1;
+	cout << "Heap Sort\t\t\t" << ms_double.count() << endl;
 
 	cout << endl;
 	return 0;
